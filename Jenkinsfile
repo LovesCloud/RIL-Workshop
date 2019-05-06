@@ -1,4 +1,4 @@
-// node {
+node {
    def mvnHome
    def scannerHome
    stage('Preparation') { // for display purposes
