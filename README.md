@@ -1,1 +1,1 @@
-Create New Feature for App 
+Add new Empty page to Application
