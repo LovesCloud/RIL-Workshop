@@ -1,1 +1,1 @@
-Add new Empty page to Application
+Change Text of add Product button
