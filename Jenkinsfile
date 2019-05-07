@@ -33,4 +33,15 @@ node {
         sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectName=RIL-W -Dsonar.projectKey=RIL-W -Dsonar.sources=src -Dsonar.java.binaries=target/"
       }
    }
+
+
+   stage('Image-Create') {
+      // Run the maven build
+      
+   }
+
+   stage('Image-Push') {
+      // Run the maven build
+      
+   }
 }
