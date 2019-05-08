@@ -19,7 +19,7 @@ node {
    
    stage('Sonar') {
       withSonarQubeEnv('SonarQube') {
-        sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectName=RIL-W -Dsonar.projectKey=RIL-W -Dsonar.sources=src -Dsonar.java.binaries=target/"
+        sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectName=RIL-Workshop -Dsonar.projectKey=RILW -Dsonar.sources=src -Dsonar.java.binaries=target/"
       }
    }
 
