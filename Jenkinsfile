@@ -25,11 +25,11 @@ node {
    }
    
   stage('Sonar Code Analysis') {
-      /*withSonarQubeEnv('SonarQube') {
+      withSonarQubeEnv('SonarQube') {
          //testing sonar
         sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectName=RIL-Workshop -Dsonar.projectKey=RILW -Dsonar.sources=src -Dsonar.java.binaries=target/"
       }
-      */
+      
    }
 
 
@@ -62,7 +62,7 @@ node {
 
    stage('Nexus-Push') {
       
-  /*  withDockerRegistry(credentialsId: 'nexus', url: 'http://nexus.loves.cloud:8083') {
+  withDockerRegistry(credentialsId: 'nexus', url: 'http://nexus.loves.cloud:8083') {
           sh"""#!/bin/bash
              docker tag crud-mysql-vuejs:${BUILD_NUMBER} nexus.loves.cloud:8083/crud-mysql-vuejs:${BUILD_NUMBER}
              docker push nexus.loves.cloud:8083/crud-mysql-vuejs:${BUILD_NUMBER}
@@ -70,8 +70,8 @@ node {
           """
       }
      
-*/
-      withDockerRegistry(credentialsId: 'dockerhub') {
+
+     /* withDockerRegistry(credentialsId: 'dockerhub') {
          sh"""#!/bin/bash
              docker tag crud-mysql-vuejs:${BUILD_NUMBER} lovescloud/crud-mysql-vuejs:${BUILD_NUMBER}
              docker push lovescloud/crud-mysql-vuejs:${BUILD_NUMBER}
@@ -81,14 +81,14 @@ node {
       sh"""#!/bin/bash
          docker rmi lovescloud/crud-mysql-vuejs:${BUILD_NUMBER}
       """
-      
+      */
    }
    
    
    
 
    stage('Deploy') {
-  /*
+  
       sh label: '', script: '''sed -i \'s/IMAGE/image: lovescloud\\/crud-mysql-vuejs:\'${BUILD_NUMBER}\'/\' docker-compose.yaml
 '''
       sh"""#!/bin/bash
@@ -106,8 +106,8 @@ node {
       kubectl apply -f ${BUILD_NUMBER}-kompose/
       sleep 10
       """
-      */
-      withDockerRegistry(credentialsId: 'dockerhub') {
+      
+     /* withDockerRegistry(credentialsId: 'dockerhub') {
          sh"""#!/bin/bash
              docker tag crud-mysql-vuejs:${BUILD_NUMBER} lovescloud/crud-mysql-vuejs:${BUILD_NUMBER}
              docker push lovescloud/crud-mysql-vuejs:${BUILD_NUMBER}
@@ -117,7 +117,7 @@ node {
       sh"""#!/bin/bash
          docker rmi lovescloud/crud-mysql-vuejs:${BUILD_NUMBER}
       """
-      
+      */
    
    }
    
